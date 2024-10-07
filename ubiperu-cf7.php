@@ -18,8 +18,6 @@ class CF7_Custom_Field_ubiperu {
 
 	public function __construct() {
 		add_action( 'wpcf7_init', array( $this, 'add_ubiperu_tag' ) );
-		add_action( 'wpcf7_before_send_mail', array( $this, 'process_ubiperu_data' ) );
-
 		add_filter( 'wpcf7_posted_data', array( $this, 'capture_ubigeo_field' ) );
 
 		wp_enqueue_script( 'ubiperu_cf7', plugin_dir_url( __FILE__ ) . '/assets/js/main.js', array( 'jquery' ), $this->version, true );
@@ -83,22 +81,6 @@ class CF7_Custom_Field_ubiperu {
 		}
 
 		return $posted_data;
-	}
-
-	public function process_ubiperu_data($cf7) {
-		$submission = WPCF7_Submission::get_instance();
-
-		if ( $submission ) {
-			$data = $submission->get_posted_data();
-
-			if ( isset( $data['ubiperu'] ) ) {
-				$selected_city = sanitize_text_field( $data['ubiperu'] );
-
-				$mail = $cf7->prop( 'mail' );
-				$mail['body'] .= "\n\nSelected City: " . $selected_city;
-				$cf7->set_properties( array( 'mail' => $mail ) );
-			}
-		}
 	}
 }
 
