@@ -17,17 +17,17 @@ function showRegionsList() {
 		// Using 'n' for the name (from the optimized JSON)
 		option.textContent = department.n;
 
-		document.querySelector('#cb_departamento').appendChild(option);
+		document.querySelector('#up_departamento').appendChild(option);
 	});
 }
 
 function onChange_Region() {
 	// Clear province and district dropdowns, but keep the first option
-	clearSelectOptions('#cb_provincia', 'Seleccione provincia');
-	clearSelectOptions('#cb_distrito', 'Seleccione distrito');
+	clearSelectOptions('#up_provincia', 'Seleccione provincia');
+	clearSelectOptions('#up_distrito', 'Seleccione distrito');
 
 	// Get the selected department's ID from data-id
-	var departmentId = document.querySelector('#cb_departamento option:checked').getAttribute('data-id');
+	var departmentId = document.querySelector('#up_departamento option:checked').getAttribute('data-id');
 
 	showProvincesList(departmentId);
 }
@@ -50,17 +50,17 @@ function showProvincesList(departmentId) {
 		// Using 'n' for the name (from the optimized JSON)
 		option.textContent = province.n;
 
-		document.querySelector('#cb_provincia').appendChild(option);
+		document.querySelector('#up_provincia').appendChild(option);
 	});
 }
 
 function onChange_Province() {
 	// Clear districts dropdown but keep the first option
-	clearSelectOptions('#cb_distrito', 'Seleccione distrito');
+	clearSelectOptions('#up_distrito', 'Seleccione distrito');
 
 	// Get the selected province's ID from data-id
-	var provinceId = document.querySelector('#cb_provincia option:checked').getAttribute('data-id');
-	var departmentId = document.querySelector('#cb_departamento option:checked').getAttribute('data-id');
+	var provinceId = document.querySelector('#up_provincia option:checked').getAttribute('data-id');
+	var departmentId = document.querySelector('#up_departamento option:checked').getAttribute('data-id');
 	
 	showDistrictsList(departmentId, provinceId);
 }
@@ -85,7 +85,7 @@ function showDistrictsList(departmentId, provinceId) {
 		// Using 'n' for the name (from the optimized JSON)
 		option.textContent = district.n;
 
-		document.querySelector('#cb_distrito').appendChild(option);
+		document.querySelector('#up_distrito').appendChild(option);
 	});
 }
 
